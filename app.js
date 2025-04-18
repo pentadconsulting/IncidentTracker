@@ -3,19 +3,28 @@ const supabaseUrl = 'https://oszxwdfbmudbgsdjykye.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9zenh3ZGZibXVkYmdzZGp5a3llIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ5NDg4MzgsImV4cCI6MjA2MDUyNDgzOH0.hMZmZeawZPOOsK6_Sz7xW7lwcr02Q1GiEIaBxLYvMZc';
 const client = supabase.createClient(supabaseUrl, supabaseKey);
 
-
-document.addEventListener('DOMContentLoaded', async () => {
-    const { data: { user } } = await supabase.auth.getUser();
-
-    if (!user) {
-      window.location.href = '/login.html';
-    }
-  });
-  
 // DOM elements
 const form = document.getElementById('incident-form');
 const tableBody = document.getElementById('incident-table-body');
 
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+      const { data, error } = await supabase.auth.getSession();
+
+      if (error || !data.session || !data.session.user) {
+        // Not logged in
+        window.location.href = 'login.html';
+        return;
+      }
+
+      // Logged in - show app
+      document.getElementById('app').style.display = 'block';
+      loadIncidents(); // Your function to load data
+    } catch (err) {
+      console.error('Auth check error:', err);
+      window.location.href = 'login.html';
+    }
+  });
 // 📝 Fetch all incidents from Supabase
 async function loadIncidents() {
     const { data, error } = await client
