@@ -1,0 +1,180 @@
+:root {
+    --bg: #f1f4f9;
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --primary: #007bff;
+    --text: #222;
+    --border: #ddd;
+  }
+  
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #e0f7fa, #e1f5fe);
+    padding: 2rem;
+    color: var(--text);
+  }
+  
+  .container {
+    max-width: 1000px;
+    margin: auto;
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .form-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+  }
+  
+  .input-group input,
+  .input-group textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: white;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+  
+  .input-group textarea {
+    height: 80px;
+    resize: vertical;
+  }
+  
+  .form-card label {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    font-size: 0.85rem;
+    color: gray;
+    pointer-events: none;
+    transition: all 0.2s ease;
+  }
+  tbody td button{
+    margin:5px;
+    padding: 10px;
+ }
+  
+  .input-group input:focus + label,
+  .input-group input:not(:placeholder-shown) + label,
+  .input-group textarea:focus + label,
+  .input-group textarea:not(:placeholder-shown) + label {
+    top: -0.6rem;
+    left: 0.8rem;
+    font-size: 0.75rem;
+    background: white;
+    padding: 0 0.3rem;
+    color: var(--primary);
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .form-card {
+      grid-template-columns: 1fr;
+    }
+
+    thead th{
+        padding: 4px;
+        font-size: 9px;
+    }
+    body {
+        padding: 0;
+    }
+    .table-wrapper{
+        margin: 0px !important;
+    }
+    .container{
+        padding: 20px;
+    }
+    tbody td {
+        padding: 2px !important;
+        font-size: 9px;              
+    }
+    tbody td button{
+    
+        padding: 7px;
+        font-size: 9px;
+     margin: 5px;
+    }
+  }
+  
+  button {
+    grid-column: span 2;
+    padding: 1rem;
+    font-size: 1rem;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  button:hover {
+    background: #0056b3;
+  }
+  
+/* Wrapper adjusts height to viewport and scrolls if needed */
+.table-wrapper {
+    max-height: 80vh; /* Adjust this if you have header/footer */
+    overflow-y: auto;
+    margin: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  /* Basic table styling */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+  
+  /* Make header sticky */
+  thead th {
+    position: sticky;
+    top: 0;
+    background-color: var(--primary);
+    color: white;
+    z-index: 1;
+    border-bottom: 2px solid #ddd;
+    padding: 12px;
+    text-align: left;
+  }
+  
+  /* Style cells */
+  tbody td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    word-wrap: break-word;
+  }
+  
+  /* Optional hover effect */
+  tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  #actionTd{
+display: flex !important;
+gap: 20px !important;
+  }
+
+ 

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Incident Tracker</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+</head>
+<body>
+  <div class="container">
+    <h1>🚨 Incident Tracker</h1>
+
+    <form id="incident-form" class="form-card">
+        <div class="input-group"><input type="date" id="date" required /><label>Date</label></div>
+        <div class="input-group"><input type="text" id="team" required /><label>Team</label></div>
+        <div class="input-group"><input type="text" id="member" required /><label>Member</label></div>
+        <div class="input-group"><input type="text" id="type" required /><label>Type</label></div>
+        <div class="input-group"><input type="text" id="incident" required /><label>Incident</label></div>
+        <div class="input-group"><textarea id="notes" required></textarea><label>Notes</label></div>
+        <button type="submit">Add Incident</button>
+      </form>
+      
+
+    <div class="table-wrapper">
+      <table>
+        <thead >
+          <tr>
+            <th>Date</th>
+            <th>Team</th>
+            <th>Member</th>
+            <th>Type</th>
+            <th>Incident</th>
+            <th>Notes</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="incident-table-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <script src="app.js"></script>
+</body>
+</html>
