@@ -8,24 +8,23 @@ const form = document.getElementById('incident-form');
 const tableBody = document.getElementById('incident-table-body');
 
 document.addEventListener('DOMContentLoaded', async () => {
-    try {
-      const { data, error } = await supabase.auth.getSession();
-
-      if (error || !data.session || !data.session.user) {
-        // Not logged in
+    const session = JSON.parse(localStorage.getItem('supabase_session'));
+    if (!session || new Date(session.expires_at * 1000) < new Date()) {
+    
+        document.getElementById('unauthorized-alert').style.display = 'block';
+        localStorage.removeItem('supabase_session');
         window.location.href = 'login.html';
-        return;
-      }
-
-      // Logged in - show app
-      document.getElementById('app').style.display = 'block';
-      loadIncidents(); // Your function to load data
-    } catch (err) {
-      console.error('Auth check error:', err);
-      window.location.href = 'login.html';
+      return;
     }
-  });
-// 📝 Fetch all incidents from Supabase
+  
+    await supabase.auth.setSession({
+        access_token: session.access_token,
+        refresh_token: session.refresh_token,
+      });
+    document.getElementById('app').style.display = 'block'; 
+ });
+
+// 📝 Fetch all incidents from Supabase 
 async function loadIncidents() {
     const { data, error } = await client
       .from('incidents')
